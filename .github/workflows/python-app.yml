@@ -34,7 +34,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Add label
       uses: actions/github-script@v6
-      if: ${{ github.event_name == 'pull_request' && contains(github.head_ref, 'dependabot') }}
+      if: ${{ github.event_name == 'pull_request' && github.actor == 'dependabot[bot]' }}
       with:
         script: |
           github.rest.issues.addLabels({
